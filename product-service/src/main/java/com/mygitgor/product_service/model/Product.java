@@ -3,6 +3,7 @@ package com.mygitgor.product_service.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,6 +15,7 @@ import java.math.BigDecimal;
 @Builder
 @Data
 @Entity
+@Table(name = "products")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Product {

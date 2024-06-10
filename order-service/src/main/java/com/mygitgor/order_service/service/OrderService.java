@@ -53,10 +53,11 @@ public class OrderService {
 
         if(allProductInStock){
             orderRepository.save(order);
+            return "Order Placed";
         }else {
             throw new IllegalArgumentException("Product is non in stock, please try again later");
         }
-        return null;
+
     }
 
     private OrderItem mapToDto(OrderItemsDto orderItemsDto) {

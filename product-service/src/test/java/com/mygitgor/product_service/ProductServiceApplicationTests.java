@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mygitgor.product_service.dto.ProductRequest;
 import com.mygitgor.product_service.repository.ProductRepository;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -38,19 +39,21 @@ class ProductServiceApplicationTests {
 
     @Container
     @ServiceConnection
-    public static PostgreSQLContainer<?> postgresDb = new PostgreSQLContainer<>(DockerImageName.parse("postgres:15"));
+    public static PostgreSQLContainer<?> postgreSQLContainer = new PostgreSQLContainer<>(DockerImageName.parse("postgres:15"));
 
     @DynamicPropertySource
     static void datasourceProperties(DynamicPropertyRegistry registry) {
-        registry.add("spring.datasource.url", postgresDb::getJdbcUrl);
-        registry.add("spring.datasource.username", postgresDb::getUsername);
-        registry.add("spring.datasource.password", postgresDb::getPassword);
-        registry.add("spring.jpa.generate-ddl", () -> true);
+        registry.add("spring.datasource.url", postgreSQLContainer::getJdbcUrl);
+        registry.add("spring.datasource.username", postgreSQLContainer::getUsername);
+        registry.add("spring.datasource.password", postgreSQLContainer::getPassword);
+        registry.add("spring.datasource.driver-class-name", postgreSQLContainer::getDriverClassName);
+        registry.add("spring.jpa.hibernate.ddl-auto", () -> true);
     }
 
-//    static {
-//        postgresDb.start();
-//    }
+    @BeforeAll
+    public static void setup(){
+        postgreSQLContainer.start();
+    }
 
     @Test
     void createProductTest() throws Exception {
