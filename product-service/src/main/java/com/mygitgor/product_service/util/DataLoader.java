@@ -18,8 +18,8 @@ public class DataLoader implements CommandLineRunner {
     public void run(String... args) throws Exception {
         if (productRepository.count() < 1) {
             Product product = new Product();
-            product.setName("iPhone 13");
-            product.setDescription("iPhone 13");
+            product.setName("iphone 14");
+            product.setDescription("iphone 14");
             product.setPrice(BigDecimal.valueOf(1000));
 
             productRepository.save(product);
