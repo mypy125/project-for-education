@@ -1,21 +1,17 @@
 package com.mygitgor.product_service.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
 
 import java.math.BigDecimal;
 
-@Builder
-@Data
 @Entity
 @Table(name = "products")
+@Builder
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Product {
@@ -25,4 +21,5 @@ public class Product {
     private String name;
     private String description;
     private BigDecimal price;
+
 }
