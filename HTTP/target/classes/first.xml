@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<request id="25">
+    <start-row>
+        <method>GET</method>
+        <url>www.google.com</url>
+        <vesion>1.1</vesion>
+    </start-row>
+    <heders>
+        <heder name="content-type" value="text/html"/>
+        <heder name="accept" value="application/json"/>
+    </heders>
+    <body type="text/plain"/>
+</request>
